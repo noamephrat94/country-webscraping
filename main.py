@@ -23,14 +23,13 @@ day = datetime.today().strftime('%d')
 month = datetime.today().strftime('%m')
 year = datetime.today().strftime('%Y')
 
-def prep_driver():
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--no-sandbox")
-    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
-    return driver
+chrome_options = webdriver.ChromeOptions()
+chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--no-sandbox")
+driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
+
 
 
 def daily_folder_file():
@@ -1396,7 +1395,6 @@ def main():
     daily_folder_file()
     failed = []
     df = pd.read_csv('webmining_template.csv')
-    driver = prep_driver()
     load_page_comps(driver)
     # df = france(driver)
     # df = monaco(driver, df)
