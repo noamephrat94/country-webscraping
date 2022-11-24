@@ -55,8 +55,11 @@ def download_pdf(url):
 
     path_loc = os.path.join(os.getcwd(), "pdfs")
     print(path_loc)
-    options = ChromeOptions()
-    options.add_argument("--headless")
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--no-sandbox")
     chrome_prefs = {
         "download.prompt_for_download": False,
         "plugins.always_open_pdf_externally": True,
@@ -65,8 +68,7 @@ def download_pdf(url):
         "download.default_directory": path_loc
     }
     options.add_experimental_option("prefs", chrome_prefs)
-    driver_location = 'driver/chromedriver'
-    driver2 = Chrome(executable_path=driver_location, chrome_options=options)
+    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
 
     # test by inserting a URL you know that will open up a PDF file
     driver2.get(url)
