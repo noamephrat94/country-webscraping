@@ -1396,9 +1396,6 @@ def main():
     failed = []
     df = pd.read_csv('webmining_template.csv')
     load_page_comps(driver)
-    # df = france(driver)
-    # df = monaco(driver, df)
-    df = liechtenstein(driver, df)
     try:
         df = albania(driver, df)
     except Exception as e:
