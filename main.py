@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 from PIL import Image
 import pandas as pd
 import pytesseract
-import cv2
 from PIL import Image
 from tika import parser  # pip install tika
 import re
